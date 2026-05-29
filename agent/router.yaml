@@ -46,3 +46,7 @@ rules:
     fallback_profile: openai
     reason: Weekly maintenance should balance quality and cost.
 
+  - task: research_session
+    preferred_profile: local
+    fallback_profile: deepseek
+    reason: Session setup should be cheap, fast, and retrieval-driven.

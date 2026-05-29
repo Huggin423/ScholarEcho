@@ -41,7 +41,14 @@ Retrieval starts simple:
 - search related question wording
 - search paper ids, authors, DOI, arXiv ids, and Zotero keys
 
-The first implementation is `scripts/search_vault.py`. Future vector search or MCP tools should preserve the same behavior instead of replacing it with opaque similarity search.
+The first implementation is:
+
+- `scripts/search_vault.py`: direct search.
+- `scripts/research_session.py`: compact session brief for a current task.
+- `scripts/check_vault.py`: retrieval-health check.
+- `scripts/weekly_digest.py`: weekly synthesis candidate.
+
+Future vector search or MCP tools should preserve the same behavior instead of replacing it with opaque similarity search.
 
 ## Agent Harness
 

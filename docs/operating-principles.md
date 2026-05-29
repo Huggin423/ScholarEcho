@@ -4,6 +4,12 @@
 
 Do not begin by asking "what should I summarize?" Begin by asking "what question am I trying to answer?"
 
+The fastest entry point is:
+
+```bash
+make session q="current question"
+```
+
 ## Retrieve Before Writing
 
 Search existing notes before creating new ones. Use exact keywords, aliases, trigger terms, project seeds, and related questions.

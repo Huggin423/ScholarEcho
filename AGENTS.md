@@ -34,12 +34,24 @@ Do not add new object types unless they clearly simplify the workflow.
 Use this loop for non-trivial work:
 
 1. Identify the current question, project, or output goal.
-2. Retrieve relevant existing notes from `04_questions/`, `05_projects/`, `02_concepts/`, `03_methods/`, `01_papers/`, and `06_synthesis/`.
+2. Run or simulate `scripts/research_session.py "<question>"` to retrieve relevant existing notes.
 3. State only the necessary plan when edits are substantial.
 4. Create or update the smallest useful knowledge object.
 5. Link the update back to questions, concepts, methods, projects, or outputs.
 6. Mark uncertainty, missing evidence, and inferred relationships.
 7. Write a trace for meaningful AI-assisted changes.
+
+## Assumed User Behavior
+
+The user is unlikely to reread old notes without a concrete task.
+
+Therefore, optimize for resurfacing:
+
+- Start from the current task.
+- Retrieve before writing.
+- Prefer adding activation cues to existing notes over writing new summaries.
+- Keep session briefs compact enough to read quickly.
+- Make weekly review focus on changed understanding, not total coverage.
 
 ## Retrieval Rules
 
@@ -50,6 +62,15 @@ Before creating a new note, check for existing context using:
 - related project keywords
 - related question wording
 - author names, paper ids, DOI, arXiv ids, and Zotero keys
+
+Useful local commands:
+
+```bash
+make session q="current question"
+make search q="keyword or question"
+make check
+make week
+```
 
 When a note is useful for future retrieval, add or update:
 
