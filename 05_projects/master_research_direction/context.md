@@ -7,6 +7,7 @@ primary_questions: []
 core_concepts: []
 core_methods: []
 key_papers: []
+retrieval_seeds: []
 ---
 
 # Project Context
@@ -20,6 +21,11 @@ Write the current research direction in plain language.
 Why this direction matters to you, your lab, or your field.
 
 ## Known Keywords
+
+
+## Retrieval Seeds
+
+Terms, aliases, authors, venues, methods, and phrases that should be used when retrieving context for this project.
 
 
 ## Core Questions
@@ -39,6 +45,7 @@ Why this direction matters to you, your lab, or your field.
 
 ## What I Need From AI Agents
 
+- Retrieve relevant old notes before generating new content.
 - Help organize papers into reusable research objects.
 - Help compare methods and assumptions.
 - Help surface research gaps.
@@ -48,3 +55,6 @@ Why this direction matters to you, your lab, or your field.
 
 Topics that are adjacent but currently out of scope.
 
+## Current Working Context
+
+Short-lived notes about what matters right now. Keep this section compact.

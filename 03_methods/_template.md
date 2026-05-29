@@ -3,9 +3,13 @@ id: method-name
 name:
 aliases: []
 status: draft
+trigger_terms: []
 related_concepts: []
 related_papers: []
 related_projects: []
+related_questions: []
+best_for: []
+weak_for: []
 confidence: low
 needs_review: true
 ---
@@ -19,6 +23,9 @@ needs_review: true
 # Core Idea
 
 
+# Use When
+
+
 # Assumptions
 
 
@@ -28,6 +35,9 @@ needs_review: true
 # Limitations
 
 
+# Failure Modes
+
+
 # Typical Evaluation
 
 
@@ -35,5 +45,4 @@ needs_review: true
 
 
 # Implementation Notes
-
 

@@ -10,14 +10,27 @@ arxiv_id:
 pdf_path:
 status: unread
 tags: []
+trigger_terms: []
 concepts: []
 methods: []
 projects: []
+related_questions: []
+supports: []
+challenges: []
+use_when: []
 confidence: low
 needs_review: true
 ---
 
 # TL;DR
+
+
+# Activation
+
+## Use When
+
+
+## Do Not Use When
 
 
 # Research Problem
@@ -32,29 +45,33 @@ needs_review: true
 # Evidence
 
 
-# Limitations
+# Limits
 
 
 # Connections
 
-## Related Concepts
-
-
 ## Related Methods
+
+
+## Related Concepts
 
 
 ## Related Papers
 
 
+## Supports These Questions
+
+
+## Challenges These Ideas
+
+
 # Useful For My Research
 
 
-# Questions
+# New Questions
 
 
 # Follow-up Papers
 
 
 # Notes
-
-

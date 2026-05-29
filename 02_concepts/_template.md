@@ -3,9 +3,12 @@ id: concept-name
 name:
 aliases: []
 status: draft
+trigger_terms: []
 related_concepts: []
 related_methods: []
 related_projects: []
+related_questions: []
+use_when: []
 confidence: low
 needs_review: true
 ---
@@ -14,6 +17,12 @@ needs_review: true
 
 
 # Why It Matters
+
+
+# Use When
+
+
+# Retrieval Cues
 
 
 # Key Papers
@@ -29,5 +38,4 @@ needs_review: true
 
 
 # Notes
-
 

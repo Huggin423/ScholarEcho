@@ -6,6 +6,8 @@ papers: []
 concepts: []
 methods: []
 projects: []
+questions: []
+trigger_terms: []
 confidence: medium
 needs_review: true
 ---
@@ -13,6 +15,9 @@ needs_review: true
 # Topic Review
 
 ## Scope
+
+
+## Use When
 
 
 ## Main Threads
@@ -31,5 +36,4 @@ needs_review: true
 
 
 ## Citation Gaps
-
 

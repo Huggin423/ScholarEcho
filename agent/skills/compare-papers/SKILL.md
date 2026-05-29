@@ -2,10 +2,11 @@
 
 ## Purpose
 
-Compare two or more papers to identify shared assumptions, disagreements, method differences, evidence gaps, and implications for a research project.
+Compare two or more papers around a specific research question.
 
 ## Inputs
 
+- A research question or project goal.
 - Two or more paper cards from `01_papers/`.
 - Related concept and method cards.
 - Optional project context from `05_projects/`.
@@ -16,17 +17,19 @@ A synthesis note under `06_synthesis/topic_reviews/` or an update to an existing
 
 ## Workflow
 
-1. Read each paper card and identify:
+1. State the question being compared.
+2. Retrieve relevant paper, concept, method, and synthesis notes before writing.
+3. Read each paper card and identify:
    - research problem
    - core claims
    - method
    - evidence
-   - limitations
-2. Build a comparison table.
-3. Identify agreements, disagreements, and missing evidence.
-4. State implications for the active project.
-5. Update related questions or hypotheses if useful.
-6. Write a trace under `agent/traces/`.
+   - limits
+   - use_when
+4. Build a compact comparison table.
+5. Identify agreements, disagreements, missing evidence, and practical implications.
+6. Update related questions, project context, or hypotheses if useful.
+7. Write a trace under `agent/traces/`.
 
 ## Comparison Dimensions
 
@@ -38,6 +41,7 @@ A synthesis note under `06_synthesis/topic_reviews/` or an update to an existing
 - Claimed contribution
 - Failure modes
 - Relevance to my project
+- Whether it supports or challenges the active question
 
 ## Rules
 
@@ -45,4 +49,4 @@ A synthesis note under `06_synthesis/topic_reviews/` or an update to an existing
 - Mark inferred relationships as inference.
 - Preserve minority or conflicting viewpoints.
 - Avoid collapsing different definitions into one concept without review.
-
+- Do not produce a broad literature review unless requested.

@@ -5,9 +5,25 @@ status: active
 
 # Open Questions
 
-Use this file as the top-level backlog of research questions.
+This is the main index of the vault. Papers, concepts, methods, synthesis notes, and outputs should connect back to these questions when possible.
 
 ## High Priority
+
+Use this format:
+
+```markdown
+### Question
+
+- id:
+- status: active | parked | answered
+- trigger_terms:
+- related_projects:
+- current_best_answer:
+- supporting_notes:
+- challenging_notes:
+- missing_evidence:
+- next_action:
+```
 
 
 ## Medium Priority
@@ -17,5 +33,4 @@ Use this file as the top-level backlog of research questions.
 
 
 ## Retired or Answered
-
 

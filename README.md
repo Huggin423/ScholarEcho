@@ -1,67 +1,74 @@
-# AI-Ready Research Vault
+# Personal Research Context Engine
 
-这是一个面向研究生长期研究的本地个人知识库骨架。它的目标不是替代 Zotero 或 Notion，而是把论文、笔记、研究问题、项目上下文组织成 AI Agent 可以稳定读取、检索、更新和复用的结构化上下文。
+这个仓库不是“论文收藏夹”，而是一个本地的个人研究上下文引擎。
 
-## 设计目标
+它的目标很克制：当你正在读论文、想问题、写 proposal 或设计实验时，系统能把相关旧知识重新带回当前任务里，而不是等你主动翻笔记。
 
-- 让 Zotero 继续负责 PDF、引用、BibTeX 和阅读状态。
-- 让本仓库负责可长期维护的研究知识结构。
-- 让不同 AI 供应商都能读取统一的 `AGENTS.md`、Skills、模板和上下文包。
-- 让每次 AI 处理论文、综合文献、生成研究问题时都留下 trace。
-- 让知识库最终服务于 proposal、related work、实验设计、论文写作和答辩材料。
+## 设计哲学
+
+1. **问题优先，不以论文为中心。** 论文是证据和方法来源，研究问题才是组织知识的主轴。
+2. **检索优先，不依赖复习意志。** 每次 AI 工作都应该先找已有纸条、概念、问题和项目上下文，再生成新内容。
+3. **少而稳定，不追求大而全。** 先维护少数高质量对象：Paper、Concept、Method、Question、Project、Synthesis。
+4. **可激活，而不只是可保存。** 每条知识都要写清楚它在什么任务里有用。
+5. **输出反哺。** proposal、related work、实验计划里的新判断，要回流到问题和项目上下文。
+
+## 最小闭环
+
+```text
+当前问题
+  -> 检索旧知识
+  -> 读新论文或写新内容
+  -> 连接到问题/概念/方法/项目
+  -> 每周综合
+  -> 更新下一步研究问题
+```
+
+如果一个功能不能让这个闭环更顺，它暂时不进第一版。
 
 ## 目录结构
 
 ```text
 .
-├── 00_inbox/                 # Zotero / Notion / 临时导入材料
-├── 01_papers/                # 单篇论文卡片
-├── 02_concepts/              # 概念节点
-├── 03_methods/               # 方法节点
-├── 04_questions/             # 开放研究问题
-├── 05_projects/              # 研究项目上下文包
-├── 06_synthesis/             # 周总结、主题综述、跨论文综合
-├── 07_outputs/               # proposal、论文、汇报材料等输出
-├── agent/                    # Agent profiles、prompts、skills、traces
-├── docs/                     # 架构和使用文档
-├── index/                    # metadata、embedding、graph 等索引产物
-└── scripts/                  # 本地维护脚本
+├── 00_inbox/       # Zotero / Notion / 临时导入材料
+├── 01_papers/      # 论文卡片：证据、方法、局限和激活条件
+├── 02_concepts/    # 概念卡片：别名、触发词、相关问题
+├── 03_methods/     # 方法卡片：适用场景、限制和代表论文
+├── 04_questions/   # 研究问题：知识库的主索引
+├── 05_projects/    # 项目上下文：当前方向、检索种子、写作状态
+├── 06_synthesis/   # 周总结和主题小综述
+├── 07_outputs/     # proposal、论文草稿、汇报材料
+├── agent/          # AGENTS、profiles、router、skills、traces
+├── docs/           # 设计原则和架构说明
+├── index/          # 未来生成的索引，不是源数据
+└── scripts/        # 本地维护脚本
 ```
 
-## 第一阶段工作流
+## 现在怎么用
 
-1. 从 Zotero 选择 10-20 篇与你未来研究方向最相关的论文。
-2. 按 `01_papers/_template.md` 为每篇论文建立结构化卡片。
-3. 把每篇论文连接到至少一个 `Concept`、`Method`、`Question` 或 `Project`。
-4. 每周运行一次 `agent/skills/weekly-synthesis/SKILL.md` 中定义的复盘流程。
-5. 将形成的研究问题沉淀到 `04_questions/open_questions.md` 和项目上下文中。
+1. 先在 `05_projects/master_research_direction/context.md` 写下当前研究方向和 3-5 个核心问题。
+2. 每读一篇论文，用 `01_papers/_template.md` 建卡片，重点写“它能回答哪个问题”。
+3. 每次让 AI 工作前，先用本地检索找旧知识：
 
-## 多模型使用
-
-模型供应商通过 `agent/profiles/*.yaml` 抽象。Skills 不绑定具体模型，只描述任务流程。实际运行时可以按 `agent/router.yaml` 选择 OpenAI、DeepSeek、本地模型或其他供应商。
-
-建议原则：
-
-- 批量初读、标签分类：优先使用低成本模型。
-- 跨论文综合、proposal 写作：优先使用强推理和长上下文模型。
-- 隐私敏感笔记：优先使用本地模型。
-- 所有非平凡 AI 输出都要写入 `agent/traces/`。
-
-## 快速开始
-
-阅读顺序建议：
-
-1. `AGENTS.md`
-2. `docs/architecture.md`
-3. `agent/router.yaml`
-4. `agent/skills/read-paper/SKILL.md`
-5. `01_papers/_template.md`
-
-然后创建你的第一个项目上下文：
-
-```text
-05_projects/master_research_direction/context.md
+```bash
+python3 scripts/search_vault.py "你的关键词或研究问题"
 ```
 
-把你的研究方向、已知关键词、导师/实验室关注点、已有论文列表先写进去。后续 AI Agent 会优先围绕这个上下文组织知识。
+4. 每周只做一次综合，不追求全量复习，只回答：这周哪些旧知识被重新连接了？哪些问题变清楚了？
 
+## 多模型策略
+
+模型供应商通过 `agent/profiles/*.yaml` 抽象，任务路由放在 `agent/router.yaml`。
+
+- DeepSeek：批量初读、中文解释、低成本推理。
+- OpenAI：跨论文综合、proposal、复杂写作。
+- Local：隐私笔记、简单分类、离线处理。
+
+模型可以换，但知识对象、检索线索、项目上下文和 trace 要稳定。
+
+## 首批阅读文件
+
+1. `docs/design-philosophy.md`
+2. `AGENTS.md`
+3. `04_questions/open_questions.md`
+4. `05_projects/master_research_direction/context.md`
+5. `agent/skills/read-paper/SKILL.md`

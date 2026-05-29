@@ -1,73 +1,60 @@
 # Architecture
 
-This vault separates durable knowledge from model execution.
+The architecture is intentionally small.
+
+The vault has one job: make useful old context resurface during current research work.
 
 ```text
-Sources -> Knowledge Objects -> Retrieval -> Agent Harness -> Outputs
+Current question
+  -> retrieve existing context
+  -> read / think / write
+  -> update the smallest useful note
+  -> reconnect it to questions and projects
 ```
 
-## Layers
+## Source Material
 
-### Source Layer
+Zotero, Notion, PDFs, and manual notes are inputs. They are not the main knowledge structure.
 
-Raw material stays close to the tool that owns it:
+Use `00_inbox/` only as a temporary landing area.
 
-- Zotero: PDFs, bibliography, citation keys, reading status.
-- Notion: legacy summaries and project notes.
-- Local files: Markdown notes, scripts, indexes, traces.
+## Knowledge Objects
 
-### Knowledge Layer
+The durable layer has six object types:
 
-The vault turns raw material into stable objects:
+- `01_papers/`: evidence and claims from individual papers.
+- `02_concepts/`: reusable ideas and aliases.
+- `03_methods/`: approaches, assumptions, and failure modes.
+- `04_questions/`: active questions and missing evidence.
+- `05_projects/`: current working context and retrieval seeds.
+- `06_synthesis/`: small integration notes that change understanding.
 
-- Paper
-- Concept
-- Method
-- Question
-- Project
-- Synthesis
-- Output
+This is enough for the first version. Add structure only when these six objects cannot express a repeated need.
 
-Each object should be independently readable and linked to related objects.
+## Retrieval
 
-### Retrieval Layer
+Retrieval starts simple:
 
-Retrieval can evolve over time:
+- search exact terms
+- search aliases and trigger terms
+- search active project seeds
+- search related question wording
+- search paper ids, authors, DOI, arXiv ids, and Zotero keys
 
-- Phase 1: filename, tag, and Markdown search.
-- Phase 2: SQLite metadata index.
-- Phase 3: vector index and concept graph.
-- Phase 4: MCP server exposing search and write tools.
+The first implementation is `scripts/search_vault.py`. Future vector search or MCP tools should preserve the same behavior instead of replacing it with opaque similarity search.
 
-### Agent Harness
+## Agent Harness
 
-Agents are workflows, not just prompts.
+The harness is also small:
 
-The harness consists of:
+- `AGENTS.md`: global behavior.
+- `agent/profiles/`: model capabilities.
+- `agent/router.yaml`: model choice by task.
+- `agent/skills/`: repeatable research workflows.
+- `agent/traces/`: meaningful AI-assisted changes.
 
-- `AGENTS.md`: global operating rules.
-- `agent/profiles/`: model/provider capability profiles.
-- `agent/router.yaml`: task-to-model routing policy.
-- `agent/skills/`: reusable research workflows.
-- `agent/prompts/`: reusable prompt fragments.
-- `agent/traces/`: audit trail of meaningful runs.
+Agents should retrieve before writing and connect before expanding.
 
-### Output Layer
+## Outputs
 
-The vault should eventually produce:
-
-- related work drafts
-- research proposals
-- experiment plans
-- reading maps
-- thesis chapters
-- presentation decks
-
-## First Milestone
-
-The first milestone is not full automation. It is a reliable loop:
-
-```text
-Read paper -> Structure note -> Link concepts -> Weekly synthesis -> Update research questions
-```
-
+`07_outputs/` contains proposals, drafts, reports, and presentations. Outputs are not the end of the loop: useful claims, gaps, and decisions should feed back into questions and project context.
