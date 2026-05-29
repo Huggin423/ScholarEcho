@@ -1,0 +1,48 @@
+version: 1
+
+defaults:
+  profile: default
+  fallback_profile: deepseek
+  require_trace: true
+
+rules:
+  - task: paper_first_pass
+    preferred_profile: deepseek
+    fallback_profile: openai
+    reason: Batch reading should be cost-efficient.
+
+  - task: paper_deep_read
+    preferred_profile: openai
+    fallback_profile: deepseek
+    reason: Deep reading needs careful reasoning and citation discipline.
+
+  - task: concept_tagging
+    preferred_profile: local
+    fallback_profile: deepseek
+    reason: Low-risk classification can use cheaper models.
+
+  - task: method_comparison
+    preferred_profile: deepseek
+    fallback_profile: openai
+    reason: Reasoning-heavy but often cost-sensitive.
+
+  - task: topic_synthesis
+    preferred_profile: openai
+    fallback_profile: deepseek
+    reason: Cross-paper synthesis needs strong long-context reasoning.
+
+  - task: proposal_writing
+    preferred_profile: openai
+    fallback_profile: deepseek
+    reason: High-value writing should prioritize quality.
+
+  - task: private_note_cleanup
+    preferred_profile: local
+    fallback_profile: deepseek
+    reason: Privacy-sensitive notes should stay local when possible.
+
+  - task: weekly_review
+    preferred_profile: deepseek
+    fallback_profile: openai
+    reason: Weekly maintenance should balance quality and cost.
+

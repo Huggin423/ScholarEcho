@@ -1,0 +1,34 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+
+# Local generated indexes and caches
+index/embeddings/*
+index/*.sqlite
+index/*.sqlite3
+index/*.db
+index/graph.generated.*
+
+# Large raw exports; keep curated examples manually if needed
+00_inbox/**/*.pdf
+00_inbox/**/*.zip
+00_inbox/**/*.ris
+00_inbox/**/*.bib
+
+# Secrets and provider config
+agent/profiles/local.private.yaml
+agent/profiles/*.private.yaml
+

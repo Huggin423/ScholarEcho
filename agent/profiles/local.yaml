@@ -1,0 +1,31 @@
+name: local
+provider: local
+model: configurable
+temperature: 0.1
+max_context_tokens: 8192
+
+capabilities:
+  tool_use: false
+  json_mode: partial
+  structured_outputs: partial
+  long_context: false
+  vision: false
+  embeddings: configurable
+
+recommended_tasks:
+  - private_note_cleanup
+  - tag_suggestion
+  - metadata_normalization
+  - simple_classification
+
+policies:
+  require_trace: false
+  require_citations: true
+  allow_file_read: true
+  allow_file_write: false
+  chunk_long_documents: true
+
+notes:
+  - Use for privacy-sensitive or low-risk local tasks.
+  - Do not rely on this profile for high-stakes synthesis without review.
+

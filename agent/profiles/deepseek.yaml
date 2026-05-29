@@ -1,0 +1,32 @@
+name: deepseek
+provider: deepseek
+model: deepseek-reasoner
+temperature: 0.2
+max_context_tokens: 64000
+
+capabilities:
+  tool_use: true
+  json_mode: true
+  structured_outputs: partial
+  long_context: medium
+  vision: false
+  embeddings: false
+
+recommended_tasks:
+  - paper_first_pass
+  - batch_summary
+  - method_comparison
+  - chinese_explanation
+  - cost_sensitive_reasoning
+
+policies:
+  require_trace: true
+  require_citations: true
+  allow_file_read: true
+  allow_file_write: true
+  chunk_long_documents: true
+
+notes:
+  - Prefer explicit Markdown templates when strict JSON reliability is uncertain.
+  - Require source snippets before writing strong paper claims.
+

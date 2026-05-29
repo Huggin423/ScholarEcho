@@ -1,0 +1,27 @@
+name: openai
+provider: openai
+model: gpt-5
+temperature: 0.2
+max_context_tokens: 120000
+
+capabilities:
+  tool_use: true
+  json_mode: true
+  structured_outputs: true
+  long_context: true
+  vision: true
+  embeddings: true
+
+recommended_tasks:
+  - topic_synthesis
+  - proposal_writing
+  - related_work_writing
+  - research_question_generation
+  - complex_planning
+
+policies:
+  require_trace: true
+  require_citations: true
+  allow_file_read: true
+  allow_file_write: true
+
