@@ -1,4 +1,4 @@
-"""Shared helpers for local vault scripts."""
+"""Shared helpers for local ScholarEcho scripts."""
 
 from __future__ import annotations
 

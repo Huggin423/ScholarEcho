@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check whether notes are likely to be retrievable and reusable."""
+"""Check whether ScholarEcho notes are likely to be retrievable and reusable."""
 
 from __future__ import annotations
 
@@ -57,7 +57,7 @@ def is_project_note(path: Path) -> bool:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Check vault retrieval health.")
+    parser = argparse.ArgumentParser(description="Check ScholarEcho retrieval health.")
     parser.add_argument("--strict", action="store_true", help="Exit with status 1 on warnings")
     args = parser.parse_args()
 

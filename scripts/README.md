@@ -1,6 +1,6 @@
 # Scripts
 
-Local helper scripts for maintaining the vault.
+Local helper scripts for maintaining ScholarEcho.
 
 ## Start a Research Session
 

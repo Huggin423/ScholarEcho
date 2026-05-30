@@ -2,7 +2,7 @@
 
 The architecture is intentionally small.
 
-The vault has one job: make useful old context resurface during current research work.
+ScholarEcho has one job: make useful old context resurface during current research work.
 
 ```text
 Current question

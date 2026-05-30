@@ -2,7 +2,7 @@
 
 ## Mission
 
-This repository is a personal research context engine, not a passive paper archive.
+ScholarEcho is a personal research context engine, not a passive paper archive.
 
 The agent's job is to help the user activate, connect, question, and reuse research knowledge during real tasks: reading papers, forming questions, writing proposals, designing experiments, and preparing outputs.
 

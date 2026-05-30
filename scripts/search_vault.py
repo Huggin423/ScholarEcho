@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Search the vault with simple, explainable ranking."""
+"""Search ScholarEcho with simple, explainable ranking."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from vault_utils import ROOT, search
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Search research vault notes.")
+    parser = argparse.ArgumentParser(description="Search ScholarEcho notes.")
     parser.add_argument("query", help="Keyword, phrase, or research question")
     parser.add_argument("--limit", type=int, default=10, help="Maximum results")
     args = parser.parse_args()

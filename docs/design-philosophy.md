@@ -1,12 +1,12 @@
 # Design Philosophy
 
-This vault exists because passive notes do not reliably become active knowledge.
+ScholarEcho exists because passive notes do not reliably become active knowledge.
 
 The user should not need to reread old summaries by willpower. The system should make old knowledge resurface when it becomes relevant to the current question.
 
 ## What This Project Is
 
-A small local research context engine.
+A small local research context engine that makes old knowledge echo back into current research tasks.
 
 It helps answer:
 
