@@ -4,6 +4,31 @@ The architecture is intentionally small.
 
 ScholarEcho has one job: make useful old context resurface during current research work.
 
+## Current Architecture
+
+```mermaid
+flowchart LR
+  user["Current research task"] --> session["Research session brief"]
+  session --> search["Search layer\nscripts + scholar-mcp"]
+  search --> vault["Knowledge vault\nPaper / Concept / Method / Question / Project / Synthesis"]
+  user --> sources["Source material\nZotero / Notion / PDFs / web notes"]
+  sources --> inbox["00_inbox\nraw imports and staged drafts"]
+  sources --> zotero["zotero-mcp\nmetadata, collections, attachment paths"]
+  inbox --> localmcp["scholarecho-mcp\nvault, search, parser, citation, Notion import"]
+  zotero --> localmcp
+  localmcp --> vault
+  vault --> outputs["07_outputs\nproposal, paper, slides, reports"]
+  outputs --> vault
+  vault --> synthesis["Weekly/topic synthesis"]
+  synthesis --> vault
+  localmcp --> traces["agent/traces\nmeaningful AI-assisted changes"]
+```
+
+The two MCP servers have different boundaries:
+
+- `scholarecho-mcp` owns local vault operations, search, parsing, citation lookup, and Notion draft import.
+- `zotero-mcp` owns Zotero metadata, collections, and attachment path discovery.
+
 ```text
 Current question
   -> retrieve existing context
@@ -48,7 +73,10 @@ The first implementation is:
 - `scripts/check_vault.py`: retrieval-health check.
 - `scripts/weekly_digest.py`: weekly synthesis candidate.
 
-Future vector search or MCP tools should preserve the same behavior instead of replacing it with opaque similarity search.
+MCP tools preserve the same behavior instead of replacing it with opaque similarity search:
+
+- `scripts/scholarecho_mcp.py`: vault, search, parser, citation, and Notion import tools.
+- `scripts/zotero_mcp.py`: Zotero metadata and attachment lookup.
 
 ## Agent Harness
 

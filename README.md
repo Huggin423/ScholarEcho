@@ -25,6 +25,28 @@
 
 如果一个功能不能让这个闭环更顺，它暂时不进第一版。
 
+## 项目架构一图
+
+```mermaid
+flowchart LR
+  user["当前研究任务"] --> session["Research Session Brief"]
+  session --> search["检索层\n脚本 + scholar-mcp"]
+  search --> vault["知识库\nPaper / Concept / Method / Question / Project / Synthesis"]
+  user --> sources["来源材料\nZotero / Notion / PDF / 网页笔记"]
+  sources --> inbox["00_inbox\n原始导入和草稿"]
+  sources --> zotero["zotero-mcp\n元数据、collection、附件路径"]
+  inbox --> localmcp["scholarecho-mcp\nvault、search、parser、citation、Notion import"]
+  zotero --> localmcp
+  localmcp --> vault
+  vault --> outputs["07_outputs\nproposal、论文、slides、报告"]
+  outputs --> vault
+  vault --> synthesis["周总结 / 主题综合"]
+  synthesis --> vault
+  localmcp --> traces["agent/traces\n重要 AI 辅助变更"]
+```
+
+更完整的说明见 `docs/architecture.md`。
+
 ## 目录结构
 
 ```text
@@ -40,7 +62,7 @@
 ├── agent/          # AGENTS、profiles、router、skills、traces
 ├── docs/           # 设计原则和架构说明
 ├── index/          # 未来生成的索引，不是源数据
-└── scripts/        # 本地维护脚本
+└── scripts/        # 本地维护脚本和 MCP server
 ```
 
 ## 现在怎么用
@@ -71,6 +93,49 @@ make week
 make check
 ```
 
+7. 如果要让支持 MCP 的客户端直接调用 ScholarEcho 工具，先检查本地 MCP server：
+
+```bash
+make scholar-mcp-check
+```
+
+如果还要连接 Zotero，先把 `.env` 或 MCP 客户端配置里的 `ZOTERO_USER_ID`、`ZOTERO_API_KEY` 等字段补好，再检查：
+
+```bash
+make zotero-mcp-check
+```
+
+## MCP 工具层
+
+ScholarEcho 现在有两个本地 stdio MCP server：
+
+- `scripts/scholarecho_mcp.py`：本地知识库、检索、PDF/文本解析、DOI/arXiv citation 解析、Notion 导入草稿。
+- `scripts/zotero_mcp.py`：Zotero Web API 元数据、collections、tags、附件路径和 paper-card seed。
+
+对应启动命令：
+
+```bash
+make scholar-mcp
+make zotero-mcp
+```
+
+常用 MCP 工具组：
+
+- Vault：`vault_list_notes`、`vault_read_note`、`vault_create_note`、`vault_append_note`、`vault_update_frontmatter`
+- Search：`search_vault`、`search_session_brief`、`search_retrieval_health`
+- Paper parser：`paper_parse_pdf`、`paper_parse_text`
+- Citation：`citation_extract_ids`、`citation_resolve_doi`、`citation_resolve_arxiv`
+- Notion import：`notion_list_exports`、`notion_preview_import`、`notion_import_draft`
+- Zotero：`zotero_search_items`、`zotero_get_item`、`zotero_get_collections`、`zotero_get_collection_items`、`zotero_paper_card_seed`
+
+安全边界：
+
+- MCP 写入只面向 Markdown 草稿和知识对象，不删除源文件或 PDF。
+- Notion 导入先进入 `00_inbox/notion_imports/converted/`，需要复核后再提升为 durable note。
+- Zotero 密钥只放本地 `.env` 或 MCP 客户端配置，不提交到仓库。
+
+详细配置示例见 `agent/tools/README.md`。
+
 ## 使用习惯假设
 
 这个仓库默认你不会主动复习旧总结，所以所有工具都围绕一个现实假设设计：
@@ -99,3 +164,4 @@ make check
 3. `04_questions/open_questions.md`
 4. `05_projects/master_research_direction/context.md`
 5. `agent/skills/read-paper/SKILL.md`
+6. `agent/tools/README.md`
